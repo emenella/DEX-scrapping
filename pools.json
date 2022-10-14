@@ -1,0 +1,344 @@
+[
+  {
+    "pool": "0x885e214cFFd19E1D30f3c9F55056f9e8d99Ee1b5",
+    "chainId": 1,
+    "token0": {
+      "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "symbol": "USDT",
+      "decimals": 6,
+      "chainId": 1
+    },
+    "token1": {
+      "address": "0xdB25f211AB05b1c97D595516F45794528a807ad8",
+      "symbol": "EURS",
+      "decimals": 2,
+      "chainId": 1
+    },
+    "price0": 1.04542,
+    "price1": 0.956555
+  },
+  {
+    "pool": "0x8F05bDD707e90eED020F8068A9f63FbA0ecc275d",
+    "chainId": 1,
+    "token0": {
+      "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "symbol": "USDT",
+      "decimals": 6,
+      "chainId": 1
+    },
+    "token1": {
+      "address": "0x056Fd409E1d7A124BD7017459dFEa2F387b6d5Cd",
+      "symbol": "GUSD",
+      "decimals": 2,
+      "chainId": 1
+    },
+    "price0": 1,
+    "price1": 1
+  },
+  {
+    "pool": "0x7cD0378010711CB72a6ca35f09D5Da2094061D9c",
+    "chainId": 1,
+    "token0": {
+      "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "symbol": "USDT",
+      "decimals": 6,
+      "chainId": 1
+    },
+    "token1": {
+      "address": "0x8E870D67F660D95d5be530380D0eC0bd388289E1",
+      "symbol": "PAX",
+      "decimals": 18,
+      "chainId": 1
+    },
+    "price0": 1.18198,
+    "price1": 0.846035
+  },
+  {
+    "pool": "0x3041CbD36888bECc7bbCBc0045E3B1f144466f5f",
+    "chainId": 1,
+    "token0": {
+      "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "symbol": "USDT",
+      "decimals": 6,
+      "chainId": 1
+    },
+    "token1": {
+      "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "symbol": "USDC",
+      "decimals": 6,
+      "chainId": 1
+    },
+    "price0": 0.99955,
+    "price1": 1.00045
+  },
+  {
+    "pool": "0x0DE0Fa91b6DbaB8c8503aAA2D1DFa91a192cB149",
+    "chainId": 1,
+    "token0": {
+      "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "symbol": "USDT",
+      "decimals": 6,
+      "chainId": 1
+    },
+    "token1": {
+      "address": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+      "symbol": "WBTC",
+      "decimals": 8,
+      "chainId": 1
+    },
+    "price0": 19061.3,
+    "price1": 0.0000524622
+  },
+  {
+    "pool": "0x6B5202cDC27c33e9e290A673Fe0E678493a9Cb92",
+    "chainId": 1,
+    "token0": {
+      "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "symbol": "USDT",
+      "decimals": 6,
+      "chainId": 1
+    },
+    "token1": {
+      "address": "0x8762db106B2c2A0bccB3A80d1Ed41273552616E8",
+      "symbol": "RSR",
+      "decimals": 18,
+      "chainId": 1
+    },
+    "price0": 190.209,
+    "price1": 0.00525737
+  },
+  {
+    "pool": "0xfDd63Ca7b3A641023D9a4a8FDF161e6Deaa7d7B6",
+    "chainId": 1,
+    "token0": {
+      "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "symbol": "USDT",
+      "decimals": 6,
+      "chainId": 1
+    },
+    "token1": {
+      "address": "0x4954Db6391F4feB5468b6B943D4935353596aEC9",
+      "symbol": "USDQ",
+      "decimals": 18,
+      "chainId": 1
+    },
+    "price0": 0.30183,
+    "price1": 3.31312
+  },
+  {
+    "pool": "0x3FDd067009ef5aA74c0fC3Efd2B0ec88999BE9F6",
+    "chainId": 1,
+    "token0": {
+      "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "symbol": "USDT",
+      "decimals": 6,
+      "chainId": 1
+    },
+    "token1": {
+      "address": "0x1c48f86ae57291F7686349F12601910BD8D470bb",
+      "symbol": "USDK",
+      "decimals": 18,
+      "chainId": 1
+    },
+    "price0": 1015.33,
+    "price1": 0.0009849
+  },
+  {
+    "pool": "0xE53bfFfD5d9A53250a3f30409fDC463CB5Ed05E1",
+    "chainId": 1,
+    "token0": {
+      "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "symbol": "USDT",
+      "decimals": 6,
+      "chainId": 1
+    },
+    "token1": {
+      "address": "0xdF574c24545E5FfEcb9a659c229253D4111d87e1",
+      "symbol": "HUSD",
+      "decimals": 8,
+      "chainId": 1
+    },
+    "price0": 0.978039,
+    "price1": 1.02245
+  },
+  {
+    "pool": "0x7Be255431FDDB600bd7490032f524f6715040351",
+    "chainId": 1,
+    "token0": {
+      "address": "0x4f3AfEC4E5a3F2A6a1A411DEF7D7dFe50eE057bF",
+      "symbol": "DGX",
+      "decimals": 9,
+      "chainId": 1
+    },
+    "token1": {
+      "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "symbol": "USDC",
+      "decimals": 6,
+      "chainId": 1
+    },
+    "price0": 42.3487,
+    "price1": 0.0236135
+  },
+  {
+    "pool": "0x767055e2a9f15783B1eC5EF134a89acF3165332F",
+    "chainId": 1,
+    "token0": {
+      "address": "0xdB25f211AB05b1c97D595516F45794528a807ad8",
+      "symbol": "EURS",
+      "decimals": 2,
+      "chainId": 1
+    },
+    "token1": {
+      "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "symbol": "USDC",
+      "decimals": 6,
+      "chainId": 1
+    },
+    "price0": 1.11439,
+    "price1": 0.897352
+  },
+  {
+    "pool": "0x03b0250A420b4a1C2a058BE85D38a5afCFfEDa35",
+    "chainId": 1,
+    "token0": {
+      "address": "0x056Fd409E1d7A124BD7017459dFEa2F387b6d5Cd",
+      "symbol": "GUSD",
+      "decimals": 2,
+      "chainId": 1
+    },
+    "token1": {
+      "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "symbol": "USDC",
+      "decimals": 6,
+      "chainId": 1
+    },
+    "price0": 1.02298,
+    "price1": 0.97754
+  },
+  {
+    "pool": "0xA8D1911e52466DcB0634f2B1b05f3674D9049346",
+    "chainId": 1,
+    "token0": {
+      "address": "0x056Fd409E1d7A124BD7017459dFEa2F387b6d5Cd",
+      "symbol": "GUSD",
+      "decimals": 2,
+      "chainId": 1
+    },
+    "token1": {
+      "address": "0x4954Db6391F4feB5468b6B943D4935353596aEC9",
+      "symbol": "USDQ",
+      "decimals": 18,
+      "chainId": 1
+    },
+    "price0": 0.00000999132,
+    "price1": 100087
+  },
+  {
+    "pool": "0x3139Ffc91B99aa94DA8A2dc13f1fC36F9BDc98eE",
+    "chainId": 1,
+    "token0": {
+      "address": "0x8E870D67F660D95d5be530380D0eC0bd388289E1",
+      "symbol": "PAX",
+      "decimals": 18,
+      "chainId": 1
+    },
+    "token1": {
+      "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "symbol": "USDC",
+      "decimals": 6,
+      "chainId": 1
+    },
+    "price0": 1.00925,
+    "price1": 0.990834
+  },
+  {
+    "pool": "0x004375Dff511095CC5A197A54140a24eFEF3A416",
+    "chainId": 1,
+    "token0": {
+      "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "symbol": "USDC",
+      "decimals": 6,
+      "chainId": 1
+    },
+    "token1": {
+      "address": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+      "symbol": "WBTC",
+      "decimals": 8,
+      "chainId": 1
+    },
+    "price0": 19406.6,
+    "price1": 0.0000515289
+  },
+  {
+    "pool": "0x121D40DC2e642168703695F4112d815B27DAA789",
+    "chainId": 1,
+    "token0": {
+      "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "symbol": "USDC",
+      "decimals": 6,
+      "chainId": 1
+    },
+    "token1": {
+      "address": "0x8762db106B2c2A0bccB3A80d1Ed41273552616E8",
+      "symbol": "RSR",
+      "decimals": 18,
+      "chainId": 1
+    },
+    "price0": 0.0307787,
+    "price1": 32.49
+  },
+  {
+    "pool": "0xaa3d28Ffc35B42fb95330E96D6E89AF91Bcc319e",
+    "chainId": 1,
+    "token0": {
+      "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "symbol": "USDC",
+      "decimals": 6,
+      "chainId": 1
+    },
+    "token1": {
+      "address": "0x4954Db6391F4feB5468b6B943D4935353596aEC9",
+      "symbol": "USDQ",
+      "decimals": 18,
+      "chainId": 1
+    },
+    "price0": 943.909,
+    "price1": 0.00105942
+  },
+  {
+    "pool": "0x3c7BCaF39cc579E3A978Cb371d00a13F5Ab7E4DA",
+    "chainId": 1,
+    "token0": {
+      "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "symbol": "USDC",
+      "decimals": 6,
+      "chainId": 1
+    },
+    "token1": {
+      "address": "0xdF574c24545E5FfEcb9a659c229253D4111d87e1",
+      "symbol": "HUSD",
+      "decimals": 8,
+      "chainId": 1
+    },
+    "price0": 0.973235,
+    "price1": 1.0275
+  },
+  {
+    "pool": "0xfa7e03D2478F7e3a48547A56757bB6B198317F96",
+    "chainId": 1,
+    "token0": {
+      "address": "0x4954Db6391F4feB5468b6B943D4935353596aEC9",
+      "symbol": "USDQ",
+      "decimals": 18,
+      "chainId": 1
+    },
+    "token1": {
+      "address": "0xdF574c24545E5FfEcb9a659c229253D4111d87e1",
+      "symbol": "HUSD",
+      "decimals": 8,
+      "chainId": 1
+    },
+    "price0": 97.4221,
+    "price1": 0.0102646
+  }
+]
