@@ -1,8 +1,8 @@
 import { token, JsonToToken } from './srcs/utils/Token';
 import { Pool } from './srcs/utils/Pool';
-import { PoolUniswapV2 } from './srcs/dex/PoolUniswapV2';
+import { PoolUniswapV2, UniswapV2 } from './srcs/dex/PoolUniswapV2';
 import { ethers } from 'ethers';
-import { stdin } from 'process';
+import { ParsePool } from './srcs/utils/Parse';
 const fs = require('fs');
 
 
@@ -30,17 +30,18 @@ function loadingBar (i: number, j: number, len: number)
     
 }
 
-const main = async () => {
+// provider ethers js alchemy mainnet
+const provider = new ethers.providers.AlchemyProvider("homestead", "puUlDh_yUa2QhAZ85j9dZb7BGgLLtVsQ");
+//set default provider
+ethers.getDefaultProvider();
+
+const getPools: () => Promise<Array<Pool>> = async () => {
     // open file json
     const json = JSON.parse(fs.readFileSync('./token.json', 'utf8'));
     let tokens: token[] = JsonToToken(json);
 
     let pools: Pool[] = [];
 
-    // provider ethers js alchemy mainnet
-    const provider = new ethers.providers.AlchemyProvider("homestead", "puUlDh_yUa2QhAZ85j9dZb7BGgLLtVsQ");
-    //set default provider
-    ethers.getDefaultProvider();
 
 
     for (let i = 0; i < tokens.length; i++)
@@ -52,10 +53,7 @@ const main = async () => {
             {
                 try {
                     console.log(tokens[i].symbol, tokens[j].symbol);
-                    let pool = await new PoolUniswapV2(tokens[i], tokens[j], tokens[i].chainId, provider);
-                    await pool.getPair();
-                    console.log(pool.token0.symbol, pool.token1.symbol, pool.price0, pool.price1);
-                    // fs.appendFileSync('pools.txt', `${tokens[i].symbol} ${tokens[j].symbol} ${pool.price0} ${pool.price1}\n`);
+                    let pool = await UniswapV2(tokens[i], tokens[j], tokens[i].chainId, provider);
                     pools.push(pool);
                 }
                 catch (error) {
@@ -70,7 +68,40 @@ const main = async () => {
         //make a json file with json object
         PoolJSON.push(element.json);
     });
-    fs.appendFileSync('pools.json', JSON.stringify(PoolJSON, null, 2));
+    fs.writeFileSync('pool.json', JSON.stringify(PoolJSON), { flag: 'w' });
+    return pools;
 }
 
-main();
+const getPrices = async (pools: Pool[]) => {
+    pools.forEach(async (element: Pool) => {
+        //cast to PoolUniswapV2
+        try {
+            let pool = element as PoolUniswapV2;
+            await pool.updatePrice();
+            console.log(pool.token0.symbol, pool.token1.symbol, pool.price0, pool.price1);
+        }
+        catch (error) {
+            // console.log(error);
+        }
+    });
+}
+
+const init = async () => {
+
+    let pools: Pool[] = [];
+    if (!fs.existsSync('./pool.json'))
+    {
+        pools = await getPools();
+    }
+    else
+    {
+        pools = await ParsePool('./pool.json', provider);
+    }
+
+    provider.on("block", async (blockNumber: number) => {
+        console.log("block", blockNumber);
+        await getPrices(pools);
+    });
+}
+
+init();

@@ -31,7 +31,6 @@ class PoolUniswapV2 extends Pool
         {
             throw new Error("Pool not found");
         }
-        await this.updatePrice();
     }
 
     public async updatePrice()
@@ -49,6 +48,26 @@ class PoolUniswapV2 extends Pool
         return await factory.getPair(token0.address, token1.address);
     }
 
+    public get json(): {}
+    {
+        console.log("json of pooluniswapv2");
+        return {
+            "pool": this._pool,
+            "chainId": this._chainId,
+            "token0": this._tokenA.json(),
+            "token1": this._tokenB.json(),
+            "price0": this._priceA,
+            "price1": this._priceB,
+            "dex": "UniswapV2"
+        }
+    }
 }
 
-export { PoolUniswapV2 };
+const UniswapV2 = async (tokenA: token, tokenB: token, chainId: ChainId, provider: ethers.providers.AlchemyProvider) => {
+    let pool = new PoolUniswapV2(tokenA, tokenB, chainId, provider);
+    await pool.getPair();
+    // await pool.updatePrice();
+    return pool;
+}
+
+export { PoolUniswapV2, UniswapV2 };
