@@ -1,10 +1,9 @@
-import { Pool } from '../utils/Pool';
-import { token } from '../utils/Token';
+import * as ft from '../utils/ft';
 import { ethers, utils } from 'ethers';
 import { FACTORY_ADDRESS, INIT_CODE_HASH } from '@uniswap/sdk'
 import { ChainId, Pair, Token ,Fetcher, Price } from '@uniswap/sdk'
 
-class PoolUniswapV2 extends Pool
+class PoolUniswapV2 extends ft.Pool
 {
     public _pair: Pair;
     public _price0: Price;
@@ -13,7 +12,7 @@ class PoolUniswapV2 extends Pool
     private _token1: Token;
     private _provider: ethers.providers.AlchemyProvider;
 
-    constructor(tokenA: token, tokenB: token, chainId: ChainId, provider: ethers.providers.AlchemyProvider)
+    constructor(tokenA: ft.Token, tokenB: ft.Token, chainId: ChainId, provider: ethers.providers.AlchemyProvider)
     {
         super("", chainId , tokenA, tokenB, 0, 0);
         this._provider = provider;
@@ -50,7 +49,6 @@ class PoolUniswapV2 extends Pool
 
     public get json(): {}
     {
-        console.log("json of pooluniswapv2");
         return {
             "pool": this._pool,
             "chainId": this._chainId,
@@ -63,7 +61,7 @@ class PoolUniswapV2 extends Pool
     }
 }
 
-const UniswapV2 = async (tokenA: token, tokenB: token, chainId: ChainId, provider: ethers.providers.AlchemyProvider) => {
+const UniswapV2 = async (tokenA: ft.Token, tokenB: ft.Token, chainId: ChainId, provider: ethers.providers.AlchemyProvider) => {
     let pool = new PoolUniswapV2(tokenA, tokenB, chainId, provider);
     await pool.getPair();
     // await pool.updatePrice();

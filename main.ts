@@ -1,22 +1,25 @@
-import { token, JsonToToken } from './srcs/utils/Token';
-import { Pool } from './srcs/utils/Pool';
 import { PoolUniswapV2, UniswapV2 } from './srcs/dex/PoolUniswapV2';
 import { ethers } from 'ethers';
-import { ParsePool } from './srcs/utils/Parse';
+import * as ft from './srcs/utils/ft';
 const fs = require('fs');
 
 
 function loadingBar (i: number, j: number, len: number)
 {
     let total = 0;
+    let point = 0;
     for (let k = 0; k < len; k++)
     {
         for (let l = k + 1; l < len; l++)
         {
             total++;
+            if (i == k && j == l)
+            {
+                point = total;
+            }
         }
     }
-    let pourcent = (i * len + j) / total * 100;
+    let pourcent = point / total * 100;
     let bar = "";
     for (let k = 0; k < 100; k++)
     {
@@ -26,7 +29,7 @@ function loadingBar (i: number, j: number, len: number)
             bar += " ";
     }
     //bar and pourcent
-    process.stdout.write(`\r${bar} ${pourcent}% ${i * len + j}/${total}`);
+    process.stdout.write(`\r${bar} ${pourcent}% ${point}/${total}`);
     
 }
 
@@ -35,45 +38,42 @@ const provider = new ethers.providers.AlchemyProvider("homestead", "puUlDh_yUa2Q
 //set default provider
 ethers.getDefaultProvider();
 
-const getPools: () => Promise<Array<Pool>> = async () => {
+const getPools: () => Promise<Array<ft.Pool>> = async () => {
     // open file json
     const json = JSON.parse(fs.readFileSync('./token.json', 'utf8'));
-    let tokens: token[] = JsonToToken(json);
+    let tokens: ft.Token[] = ft.Token.JsonToToken(json);
+    let pools: ft.Pool[] = [];
 
-    let pools: Pool[] = [];
-
-
+    console.log("Token loaded: ", tokens.length);
 
     for (let i = 0; i < tokens.length; i++)
     {
         for (let j = i + 1; j < tokens.length; j++)
         {
-            // loadingBar(i, j, tokens.length * tokens.length);
+            loadingBar(i, j, tokens.length);
             if (tokens[i].chainId == tokens[j].chainId)
             {
                 try {
-                    console.log(tokens[i].symbol, tokens[j].symbol);
                     let pool = await UniswapV2(tokens[i], tokens[j], tokens[i].chainId, provider);
                     pools.push(pool);
                 }
                 catch (error) {
-                    console.log(error);
                 }
             }
         }
     }
+    process.stdout.write("\n");
+    console.log("Pool find: ", pools.length);
     let PoolJSON = new Array();
-    pools.forEach((element: Pool) => {
-        console.log(element.pool, element.token0.address, element.token1.address, element.price0, element.price1);
-        //make a json file with json object
+    pools.forEach((element: ft.Pool) => {
         PoolJSON.push(element.json);
     });
-    fs.writeFileSync('pool.json', JSON.stringify(PoolJSON), { flag: 'w' });
+    fs.writeFileSync('pools.json', JSON.stringify(PoolJSON), { flag: 'w' });
     return pools;
 }
 
-const getPrices = async (pools: Pool[]) => {
-    pools.forEach(async (element: Pool) => {
+const getPrices = async (pools: ft.Pool[]) => {
+    pools.forEach(async (element: ft.Pool) => {
         //cast to PoolUniswapV2
         try {
             let pool = element as PoolUniswapV2;
@@ -88,17 +88,18 @@ const getPrices = async (pools: Pool[]) => {
 
 const init = async () => {
 
-    let pools: Pool[] = [];
-    if (!fs.existsSync('./pool.json'))
+    let pools: ft.Pool[] = [];
+    if (!fs.existsSync('./pools.json'))
     {
         pools = await getPools();
     }
     else
     {
-        pools = await ParsePool('./pool.json', provider);
+        pools = await ft.JsonToPool('./pools.json', provider);
     }
-
+    console.log("Pool loaded: ", pools.length);
     provider.on("block", async (blockNumber: number) => {
+        console.clear();
         console.log("block", blockNumber);
         await getPrices(pools);
     });

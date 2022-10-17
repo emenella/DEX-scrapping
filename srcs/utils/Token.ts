@@ -1,4 +1,4 @@
-class token
+export class Token
 {
     private _address: string;
     private _symbol: string;
@@ -44,21 +44,17 @@ class token
         }
     }
 
+    public static JsonToToken(json: any): Token[]
+    {
+        let tokens: Token[] = [];
+        let tmp = json["tokens"];
+        tmp.forEach((element: any) => {
+            if (element["chainId"] == 1)
+            {
+                let tmp: Token = new Token(element["address"], element["symbol"], element["decimals"], element["chainId"]);
+                tokens.push(tmp);
+            }
+        });
+        return tokens;
+    }
 }
-
-function JsonToToken(json: any): token[]
-{
-    let tokens: token[] = [];
-    let tmp = json["tokens"];
-    tmp.forEach((element: any) => {
-        if (element["chainId"] == 1)
-        {
-            let tmp: token = new token(element["address"], element["symbol"], element["decimals"], element["chainId"]);
-            tokens.push(tmp);
-        }
-    });
-    console.log(tokens.length);
-    return tokens;
-}
-
-export { token, JsonToToken };

@@ -1,16 +1,15 @@
-import { ethers, Contract } from 'ethers';
-import { token } from '../utils/Token';
+import { Token } from "./Token";
 
-class Pool
+export class Pool
 {
     protected _pool: string;
     protected _chainId: number;
-    protected _tokenA: token;
-    protected _tokenB: token;
+    protected _tokenA: Token;
+    protected _tokenB: Token;
     protected _priceA: number;
     protected _priceB: number;
 
-    constructor(pool: string, chainid: number, tokenA: token, tokenB: token, priceA: number, priceB: number)
+    constructor(pool: string, chainid: number, tokenA: Token, tokenB: Token, priceA: number, priceB: number)
     {
         this._pool = pool;
         this._chainId = chainid;
@@ -26,12 +25,12 @@ class Pool
         return this._pool;
     }
 
-    public get token0(): token
+    public get token0(): Token
     {
         return this._tokenA;
     }
 
-    public get token1(): token
+    public get token1(): Token
     {
         return this._tokenB;
     }
@@ -64,5 +63,3 @@ class Pool
     }
 
 };
-
-export { Pool };

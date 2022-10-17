@@ -1,10 +1,11 @@
-import { Pool } from './Pool';
-import { token } from './Token';
+import { Pool } from "./Pool";
+import { Token } from "./Token";
 import { PoolUniswapV2 } from '../dex/PoolUniswapV2';
-import { ethers } from 'ethers';
+import { ethers } from "ethers";
 const fs = require('fs');
 
-const ParsePool = async (path: string, provider: ethers.providers.AlchemyProvider): Promise<Pool[]> => {
+const JsonToPool = (path: string, provider: ethers.providers.AlchemyProvider): Pool[] =>
+{
 
     //parse json
     let pools: Pool[] = [];
@@ -13,7 +14,7 @@ const ParsePool = async (path: string, provider: ethers.providers.AlchemyProvide
     {
         if (json[i].dex == "UniswapV2")
         {
-            let pool = new PoolUniswapV2(new token(json[i].token0.address, json[i].token0.symbol, json[i].token0.decimals, json[i].token0.chainId), new token(json[i].token1.address, json[i].token1.symbol, json[i].token1.decimals, json[i].token1.chainId), json[i].chainId, provider);
+            let pool = new PoolUniswapV2(new Token(json[i].token0.address, json[i].token0.symbol, json[i].token0.decimals, json[i].token0.chainId), new Token(json[i].token1.address, json[i].token1.symbol, json[i].token1.decimals, json[i].token1.chainId), json[i].chainId, provider);
             pools.push(pool);
         }
         else
@@ -24,4 +25,4 @@ const ParsePool = async (path: string, provider: ethers.providers.AlchemyProvide
     return pools;
 }
 
-export { ParsePool };
+export { JsonToPool };
