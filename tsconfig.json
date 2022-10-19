@@ -1,8 +1,10 @@
 {
-    "compilerOptions": {
-      "preserveConstEnums": true,
-      "strictPropertyInitialization": false
-    },
-    "include": ["src/**/*"],
-    "exclude": ["node_modules", "**/*.spec.ts"]
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs",
+    "strict": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "strictPropertyInitialization": false
   }
+}

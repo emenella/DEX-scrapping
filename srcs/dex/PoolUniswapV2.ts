@@ -5,14 +5,14 @@ import { ChainId, Pair, Token ,Fetcher, Price } from '@uniswap/sdk'
 
 class PoolUniswapV2 extends ft.Pool
 {
-    public _pair: Pair;
-    public _price0: Price;
+    private _pair: Pair;
+    private _price0: Price;
     private _price1: Price;
     private _token0: Token;
     private _token1: Token;
-    private _provider: ethers.providers.AlchemyProvider;
+    private _provider: ethers.providers.UrlJsonRpcProvider;
 
-    constructor(tokenA: ft.Token, tokenB: ft.Token, chainId: ChainId, provider: ethers.providers.AlchemyProvider)
+    constructor(tokenA: ft.Token, tokenB: ft.Token, chainId: ChainId, provider: ethers.providers.UrlJsonRpcProvider)
     {
         super("", chainId , tokenA, tokenB, 0, 0);
         this._provider = provider;
@@ -43,7 +43,7 @@ class PoolUniswapV2 extends ft.Pool
 
     private async getPairAddress(tokenA: Token, tokenB: Token): Promise<string> {
         const [token0, token1] = tokenA.sortsBefore(tokenB) ? [tokenA, tokenB] : [tokenB, tokenA]
-        let factory = await new ethers.Contract(FACTORY_ADDRESS, ['function getPair(address tokenA, address tokenB) view returns (address pair)'], this._provider);
+        let factory = new ethers.Contract(FACTORY_ADDRESS, ['function getPair(address tokenA, address tokenB) view returns (address pair)'], this._provider);
         return await factory.getPair(token0.address, token1.address);
     }
 
@@ -64,7 +64,7 @@ class PoolUniswapV2 extends ft.Pool
 const UniswapV2 = async (tokenA: ft.Token, tokenB: ft.Token, chainId: ChainId, provider: ethers.providers.AlchemyProvider) => {
     let pool = new PoolUniswapV2(tokenA, tokenB, chainId, provider);
     await pool.getPair();
-    // await pool.updatePrice();
+    await pool.updatePrice();
     return pool;
 }
 

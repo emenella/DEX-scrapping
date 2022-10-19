@@ -1,6 +1,8 @@
 import { PoolUniswapV2, UniswapV2 } from './srcs/dex/PoolUniswapV2';
+import { PoolUniswapV3, UniswapV3 } from './srcs/dex/PoolUniswapV3';
 import { ethers } from 'ethers';
 import * as ft from './srcs/utils/ft';
+import { FeeAmount } from '@uniswap/v3-sdk';
 const fs = require('fs');
 
 
@@ -53,11 +55,21 @@ const getPools: () => Promise<Array<ft.Pool>> = async () => {
             loadingBar(i, j, tokens.length);
             if (tokens[i].chainId == tokens[j].chainId)
             {
+                let pool: ft.Pool;
                 try {
-                    let pool = await UniswapV2(tokens[i], tokens[j], tokens[i].chainId, provider);
+                    pool = await UniswapV2(tokens[i], tokens[j], tokens[i].chainId, provider);
                     pools.push(pool);
                 }
                 catch (error) {
+                }
+                for (let y = 0; y < 4; y++)
+                {
+                    try {
+                        pool = await UniswapV3(tokens[i], tokens[j], y, tokens[i].chainId, provider);
+                        pools.push(pool);
+                    }
+                    catch
+                    {}
                 }
             }
         }
@@ -65,7 +77,7 @@ const getPools: () => Promise<Array<ft.Pool>> = async () => {
     process.stdout.write("\n");
     console.log("Pool find: ", pools.length);
     let PoolJSON = new Array();
-    pools.forEach((element: ft.Pool) => {
+    pools.forEach(async (element: ft.Pool) => {
         PoolJSON.push(element.json);
     });
     fs.writeFileSync('pools.json', JSON.stringify(PoolJSON), { flag: 'w' });
